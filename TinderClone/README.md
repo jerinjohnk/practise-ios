@@ -1,6 +1,9 @@
 # Tinder Clone - League of Legends
 
-![Demo Link](../Resources/TinderClone/InitialRun.gif)
+![Demo Link 1](../Resources/TinderClone/gif/InitialRun1.0.gif)
+<br/>
+<br/>
+![Demo Link 2](../Resources/TinderClone/gif/InitialRun1.1.gif)
 <br/>
 <br/>
 
