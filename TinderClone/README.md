@@ -29,10 +29,10 @@ Don't forget to update pod files or install.
 - pod install
 - Create a project on Firebase.
     - Make sure under *Authentication-> Sign-in* section `Email/Password` is enabled<br/>
-    ![Authentication Image](..Resources/TinderClone/FirebaseSettings/Authentication.png)
+    ![Authentication Image](https://github.com/jerinjohnk/practise-ios/blob/master/Resources/TinderClone/FirebaseSettings/Authentication.png)
     - Make sure under *Storage-> Rules* section code line is updated to 
     `allow read, write: if request.auth != null || request.auth == null;`
     <br/>
-    ![Storage Image](..Resources/TinderClone/FirebaseSettings/Storage.png)
+    ![Storage Image](https://github.com/jerinjohnk/practise-ios/blob/master/Resources/TinderClone/FirebaseSettings/Storage.png)
     - Download **GoogleService-Info.plist** and place it `TinderClone/TinderClone/GoogleService-Info.plist` and include it in project.
 
