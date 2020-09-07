@@ -15,13 +15,13 @@ protocol MatchHeaderDelegate: class {
 }
 
 class MatchHeader: UICollectionReusableView {
-    
+
     var matches = [Match]() {
         didSet {collectionView.reloadData()}
     }
-    
+
     weak var delegate: MatchHeaderDelegate?
-    
+
     private let newMatchLabel: UILabel = {
         let label = UILabel()
         label.text = "New Matches"
@@ -29,7 +29,7 @@ class MatchHeader: UICollectionReusableView {
         label.textColor = #colorLiteral(red: 0.8156862745, green: 0.6588235294, blue: 0.3647058824, alpha: 1)
         return label
     }()
-    
+
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -40,38 +40,38 @@ class MatchHeader: UICollectionReusableView {
         cv.register(MatchCell.self, forCellWithReuseIdentifier: cellIdentifier)
         return cv
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         addSubview(newMatchLabel)
         newMatchLabel.anchor(top: topAnchor, left: leftAnchor, paddingTop: 12, paddingLeft: 12)
-        
+
         addSubview(collectionView)
         collectionView.anchor(top: newMatchLabel.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 12, paddingBottom: 24, paddingRight: 12)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
-// MARK : - UICollectionViewDataSource
+// MARK: - UICollectionViewDataSource
 
 extension MatchHeader: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return matches.count
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! MatchCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? MatchCell else { fatalError("DequeueReusableCell failed while casting") }
         cell.viewModel = MatchCellViewModel(match: matches[indexPath.row])
         return cell
     }
-    
+
 }
 
-// MARK : - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 
 extension MatchHeader: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -80,15 +80,11 @@ extension MatchHeader: UICollectionViewDelegate {
     }
 }
 
-// MARK : - UICollectionViewDelegateFlowLayout
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension MatchHeader: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 80, height: 100)
     }
-    
+
 }
-
-
-
-

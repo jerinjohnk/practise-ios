@@ -17,12 +17,12 @@ struct AuthCredentials {
 }
 
 struct AuthService {
-    
+
     static func logUserIn(withEmail email:String,
                           password: String, completion: AuthDataResultCallback?) {
         Auth.auth().signIn(withEmail: email, password: password, completion: completion)
     }
-    
+
     static func registerUser(withCredentials credentials: AuthCredentials,
                              completion: @escaping((Error?) -> Void)) {
         Service.uploadImage(image: credentials.profileImage) { imageUrl in
@@ -31,15 +31,15 @@ struct AuthService {
                     print("DEBUG: Error uploading image \(error.localizedDescription)")
                     return
                 }
-                
+
                 guard let uid = result?.user.uid else { return }
-                
+
                 let data = ["email": credentials.email,
                             "fullname": credentials.fullName,
                             "imageURLs": [imageUrl],
                             "uid": uid,
                             "age": 18] as [String: Any]
-                
+
                 COLLECTION_USERS.document(uid).setData(data, completion: completion)
             }
         }

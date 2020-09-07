@@ -12,11 +12,11 @@ struct Match {
     let name: String
     let uid: String
     let profileImageUrl: String
-    
+
     init(dictionary: [String: Any]) {
         self.name = dictionary["name"] as? String ?? ""
         self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
         self.uid = dictionary["uid"] as? String ?? ""
-        
+
     }
 }
